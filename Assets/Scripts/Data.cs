@@ -3,35 +3,35 @@ using UnityEngine;
 
 public static class Data
 {
-    public static readonly float cos = Mathf.Cos(Mathf.PI / 2f);
-    public static readonly float sin = Mathf.Sin(Mathf.PI / 2f);
-    public static readonly float[] RotationMatrix = { cos, sin, -sin, cos };
+    private static readonly float Cos = Mathf.Cos(Mathf.PI / 2f);
+    private static readonly float Sin = Mathf.Sin(Mathf.PI / 2f);
+    public static readonly float[] RotationMatrix = { Cos, Sin, -Sin, Cos };
 
-    public static readonly Dictionary<Tetromino, Vector2Int[]> Cells = new()
+    public static readonly Dictionary<FigureType, Vector2Int[]> Cells = new()
     {
-        { Tetromino.I, new[] { new(-1, 1), new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1) } },
+        { FigureType.I, new[] { new(-1, 1), new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1) } },
         {
-            Tetromino.J,
+            FigureType.J,
             new[] { new Vector2Int(-1, 1), new Vector2Int(-1, 0), new Vector2Int(0, 0), new Vector2Int(1, 0) }
         },
         {
-            Tetromino.L,
+            FigureType.L,
             new[] { new Vector2Int(1, 1), new Vector2Int(-1, 0), new Vector2Int(0, 0), new Vector2Int(1, 0) }
         },
         {
-            Tetromino.O,
+            FigureType.O,
             new[] { new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(0, 0), new Vector2Int(1, 0) }
         },
         {
-            Tetromino.S,
+            FigureType.S,
             new[] { new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(-1, 0), new Vector2Int(0, 0) }
         },
         {
-            Tetromino.T,
+            FigureType.T,
             new[] { new Vector2Int(0, 1), new Vector2Int(-1, 0), new Vector2Int(0, 0), new Vector2Int(1, 0) }
         },
         {
-            Tetromino.Z,
+            FigureType.Z,
             new[] { new Vector2Int(-1, 1), new Vector2Int(0, 1), new Vector2Int(0, 0), new Vector2Int(1, 0) }
         }
     };
@@ -60,14 +60,14 @@ public static class Data
         { new(0, 0), new(1, 0), new(1, 1), new(0, -2), new(1, -2) }
     };
 
-    public static readonly Dictionary<Tetromino, Vector2Int[,]> WallKicks = new()
+    public static readonly Dictionary<FigureType, Vector2Int[,]> WallKicks = new()
     {
-        { Tetromino.I, WallKicksI },
-        { Tetromino.J, WallKicksJLOSTZ },
-        { Tetromino.L, WallKicksJLOSTZ },
-        { Tetromino.O, WallKicksJLOSTZ },
-        { Tetromino.S, WallKicksJLOSTZ },
-        { Tetromino.T, WallKicksJLOSTZ },
-        { Tetromino.Z, WallKicksJLOSTZ }
+        { FigureType.I, WallKicksI },
+        { FigureType.J, WallKicksJLOSTZ },
+        { FigureType.L, WallKicksJLOSTZ },
+        { FigureType.O, WallKicksJLOSTZ },
+        { FigureType.S, WallKicksJLOSTZ },
+        { FigureType.T, WallKicksJLOSTZ },
+        { FigureType.Z, WallKicksJLOSTZ }
     };
 }

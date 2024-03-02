@@ -1,20 +1,24 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class Ghost : MonoBehaviour
 {
-    public Tile tile;
-    public Board board;
-    public Piece trackingPiece;
+    [SerializeField] private Tile ghostTile;
 
-    public Tilemap tilemap { get; private set; }
-    public Vector3Int[] cells { get; private set; }
-    public Vector3Int position { get; private set; }
+    [FormerlySerializedAs("followingTetrisBasic")] [FormerlySerializedAs("followingBoard")]
+    [SerializeField] private TetrisBoardBasic followingTetrisBoardBasic;
+
+    [FormerlySerializedAs("trackingPiece")] [SerializeField] private Figure trackingFigure;
+
+    private Tilemap ghostTilemap;
+    private Vector3Int[] ghostCells;
+    private Vector3Int ghostPiecePosition;
 
     private void Awake()
     {
-        tilemap = GetComponentInChildren<Tilemap>();
-        cells = new Vector3Int[4];
+        ghostTilemap = GetComponentInChildren<Tilemap>();
+        ghostCells = new Vector3Int[4];
     }
 
     private void LateUpdate()
@@ -27,46 +31,46 @@ public class Ghost : MonoBehaviour
 
     private void Clear()
     {
-        for (var i = 0; i < cells.Length; i++)
+        foreach (var ghostCellPosition in ghostCells)
         {
-            var tilePosition = cells[i] + position;
-            tilemap.SetTile(tilePosition, null);
+            var tilePosition = ghostCellPosition + ghostPiecePosition;
+            ghostTilemap.SetTile(tilePosition, null);
         }
     }
 
     private void Copy()
     {
-        for (var i = 0; i < cells.Length; i++) cells[i] = trackingPiece.cells[i];
+        for (var i = 0; i < ghostCells.Length; i++) ghostCells[i] = trackingFigure.GetFigureCells()[i];
     }
 
     private void Drop()
     {
-        var position = trackingPiece.Position;
+        var position = trackingFigure.GetFigurePosition();
 
         var currentRow = position.y;
-        var bottom = -board.boardSize.y / 2 - 1;
+        var bottom = -followingTetrisBoardBasic.GetBoardSize().y / 2 - 1;
 
-        board.Clear(trackingPiece);
+        followingTetrisBoardBasic.ClearPiece(trackingFigure);
 
         for (var i = currentRow; i >= bottom; i--)
         {
             position.y = i;
 
-            if (board.IsValidPosition(trackingPiece, position))
-                this.position = position;
+            if (followingTetrisBoardBasic.IsValidPosition(trackingFigure, position))
+                ghostPiecePosition = position;
             else
                 break;
         }
 
-        board.Set(trackingPiece);
+        followingTetrisBoardBasic.SetPiece(trackingFigure, false);
     }
 
     private void Set()
     {
-        for (var i = 0; i < cells.Length; i++)
+        for (var i = 0; i < ghostCells.Length; i++)
         {
-            var tilePosition = cells[i] + position;
-            tilemap.SetTile(tilePosition, tile);
+            var tilePosition = ghostCells[i] + ghostPiecePosition;
+            ghostTilemap.SetTile(tilePosition, ghostTile);
         }
     }
 }

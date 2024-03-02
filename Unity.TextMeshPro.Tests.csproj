@@ -41,7 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Tests\Runtime\Unity.TextMeshPro.Tests.asmdef" />
+    <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.8\Tests\Runtime\Unity.TextMeshPro.Tests.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.12f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

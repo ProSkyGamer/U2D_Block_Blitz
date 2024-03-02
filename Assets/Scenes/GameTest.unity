@@ -507,8 +507,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 166673081}
+  - component: {fileID: 166673082}
   m_Layer: 0
-  m_Name: Suika
+  m_Name: SuikaTetris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,6 +534,19 @@ Transform:
   - {fileID: 827516631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166673082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166673080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec1d940c2ec76a44922499fa6685152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suikaTetrisBoard: {fileID: 827516633}
 --- !u!1 &194805030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,7 +1914,7 @@ GameObject:
   - component: {fileID: 570681589}
   - component: {fileID: 570681590}
   m_Layer: 5
-  m_Name: TetrisMinigameUI
+  m_Name: BuildingTetrisUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1918,8 +1932,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 777887238}
   - {fileID: 1534633604}
+  - {fileID: 777887238}
   - {fileID: 327406481}
   - {fileID: 255192702}
   - {fileID: 801377439}
@@ -1948,8 +1962,8 @@ MonoBehaviour:
   rotatePieceEButton: {fileID: 801377440}
   rotatePieceQButton: {fileID: 143759241}
   dropPieceButton: {fileID: 255192703}
-  movePieceRightButton: {fileID: 777887239}
-  movePieceLeftButton: {fileID: 1534633605}
+  movePieceRightButton: {fileID: 1534633605}
+  movePieceLeftButton: {fileID: 777887239}
   movePieceDownButton: {fileID: 327406482}
 --- !u!1 &592430767
 GameObject:
@@ -2470,10 +2484,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669a62c17e105634788c24ada8f971ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDelay: 1
   isFallingDown: 1
-  lockDelay: 0.5
+  stepDelay: 1
   isHasLockDelay: 1
+  lockDelay: 0.5
 --- !u!114 &693034138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2511,7 +2525,6 @@ MonoBehaviour:
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
   isDeletingLines: 0
-  fullGameTransform: {fileID: 2074310484}
   allRequiredZoneTypes:
   - zoneTiles:
     - {x: 2, y: 2, z: 0}
@@ -2618,7 +2631,7 @@ GameObject:
   - component: {fileID: 777887240}
   - component: {fileID: 777887239}
   m_Layer: 5
-  m_Name: Right
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3014,10 +3027,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cadacabc4043d04aa1b223a9130f7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDelay: 1
   isFallingDown: 0
-  lockDelay: 0.5
+  stepDelay: 1
   isHasLockDelay: 0
+  lockDelay: 0.5
 --- !u!114 &827516633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3055,7 +3068,6 @@ MonoBehaviour:
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
   isDeletingLines: 0
-  fullGameTransform: {fileID: 166673081}
 --- !u!156049354 &827516634
 Grid:
   m_ObjectHideFlags: 0
@@ -3127,8 +3139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostTile: {fileID: 11400000, guid: 613b0e1e467cff049afbe77fb8fff162, type: 2}
-  followingTetrisBoardBasic: {fileID: 1528645242}
-  trackingFigure: {fileID: 1528645243}
+  followingBoard: {fileID: 0}
+  followingFigure: {fileID: 0}
 --- !u!1 &868543863
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,12 +3891,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1106080878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21bb80a6738b51e42af4e60eaa87d3db, type: 3}
+  m_Script: {fileID: 11500000, guid: 15bf3b4776b48b4489fa8c621c81880b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ghostTile: {fileID: 11400000, guid: 613b0e1e467cff049afbe77fb8fff162, type: 2}
-  followingTetrisBoardBasic: {fileID: 827516633}
-  trackingFigure: {fileID: 827516632}
+  followingBoard: {fileID: 827516633}
+  followingFigure: {fileID: 827516632}
 --- !u!156049354 &1106080881
 Grid:
   m_ObjectHideFlags: 0
@@ -5010,7 +5022,6 @@ MonoBehaviour:
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
   isDeletingLines: 0
-  fullGameTransform: {fileID: 0}
 --- !u!114 &1528645243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5023,10 +5034,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5066d11f3e5539048b42f1ba6f6f4a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDelay: 1
   isFallingDown: 0
-  lockDelay: 0.5
+  stepDelay: 1
   isHasLockDelay: 0
+  lockDelay: 0.5
 --- !u!1 &1534633603
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,7 +5051,7 @@ GameObject:
   - component: {fileID: 1534633606}
   - component: {fileID: 1534633605}
   m_Layer: 5
-  m_Name: Left
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5293,7 +5304,7 @@ GameObject:
   - component: {fileID: 1621135068}
   - component: {fileID: 1621135069}
   m_Layer: 5
-  m_Name: SuikaMinigameUI
+  m_Name: SuikaTetrisUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6725,8 +6736,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2074310484}
+  - component: {fileID: 2074310485}
   m_Layer: 0
-  m_Name: NotBasicTetris
+  m_Name: BuildingTetris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6752,6 +6764,19 @@ Transform:
   - {fileID: 693034136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2074310485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074310483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83924ef02398a46458813ed2e390faa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingTetrisBoard: {fileID: 693034138}
 --- !u!1 &2110151504
 GameObject:
   m_ObjectHideFlags: 0
@@ -6920,8 +6945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostTile: {fileID: 11400000, guid: 613b0e1e467cff049afbe77fb8fff162, type: 2}
-  followingTetrisBoardBasic: {fileID: 693034138}
-  trackingFigure: {fileID: 693034137}
+  followingBoard: {fileID: 693034138}
+  followingFigure: {fileID: 693034137}
 --- !u!156049354 &2133194423
 Grid:
   m_ObjectHideFlags: 0

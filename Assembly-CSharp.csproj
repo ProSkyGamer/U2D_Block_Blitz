@@ -48,6 +48,7 @@
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildingTetrisBoard.cs" />
     <Compile Include="Assets\Scripts\Game\UI\BuildingTetrisUI.cs" />
     <Compile Include="Assets\Scripts\Game\UI\ChooseMinigameUI.cs" />
+    <Compile Include="Assets\Scripts\Game\Minigames\CandyCrush\CandyCrushSingleTile.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\Data.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaGhostBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\Figure.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\BuildingSuikaFigure.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaTetrisBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\FigureType.cs" />
+    <Compile Include="Assets\Scripts\Game\Minigames\CandyCrush\CandyCrushUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaTetrisController.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildingTetrisFigure.cs" />
     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />

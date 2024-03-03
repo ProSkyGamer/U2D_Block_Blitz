@@ -397,6 +397,8 @@
 "Assets/Scripts/Game/Minigames/BuildingTetris/BuildingTetrisBoard.cs"
 "Assets/Scripts/Game/Minigames/BuildingTetris/BuildingTetrisFigure.cs"
 "Assets/Scripts/Game/Minigames/BuildingTetris/BuildTetrisController.cs"
+"Assets/Scripts/Game/Minigames/CandyCrush/CandyCrushSingleTile.cs"
+"Assets/Scripts/Game/Minigames/CandyCrush/CandyCrushUI.cs"
 "Assets/Scripts/Game/Minigames/SuikaTetris/BuildingSuikaFigure.cs"
 "Assets/Scripts/Game/Minigames/SuikaTetris/SuikaGhostBoard.cs"
 "Assets/Scripts/Game/Minigames/SuikaTetris/SuikaTetrisBoard.cs"

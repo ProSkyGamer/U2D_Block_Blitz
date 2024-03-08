@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,12 @@ public class BuildingTetrisUI : MonoBehaviour
     [SerializeField] private Button movePieceLeftButton;
     [SerializeField] private Button movePieceDownButton;
 
+    [SerializeField] private Transform timerTilesGrid;
+    [SerializeField] private Transform timerTilePrefab;
+    private readonly List<Image> allTimerTiles = new();
+    [SerializeField] private List<Sprite> timerTileSpritesPrefabs;
+    private SameGameSingleTile[,] tilesField;
+
     private void Awake()
     {
         closeButton.onClick.AddListener(() =>
@@ -42,7 +49,55 @@ public class BuildingTetrisUI : MonoBehaviour
 
         BuildTetrisController.Instance.OnBuildingTetrisBoardClose += BuildingBuildingTetrisControllerOnBuildingGameOver;
 
+        BuildTetrisController.Instance.OnTimerChanged += BuildingTetrisController_OnTimerChanged;
+
         Hide();
+    }
+
+    private void BuildingTetrisController_OnTimerChanged(object sender, BuildTetrisController.OnTimerChangedEventArgs e)
+    {
+        ChangeTimerTiles(e.newTimeInt);
+    }
+
+    private void InitializeTimerTiles()
+    {
+        var timerTilesTransform = timerTilesGrid.GetComponentsInChildren<Transform>();
+
+        foreach (var timerTileTransform in timerTilesTransform)
+        {
+            if (timerTileTransform == timerTilesGrid) continue;
+
+            Destroy(timerTileTransform.gameObject);
+        }
+
+        allTimerTiles.Clear();
+
+        var timerTilesCount =
+            Mathf.CeilToInt(BuildTetrisController.Instance.GetMaxGameTime() / timerTileSpritesPrefabs.Count);
+
+        for (var i = 0; i < timerTilesCount; i++)
+        {
+            var newTimerTileTransform = Instantiate(timerTilePrefab, timerTilesGrid);
+            var newTimerTileImage = newTimerTileTransform.GetComponent<Image>();
+            allTimerTiles.Add(newTimerTileImage);
+        }
+    }
+
+    private void ChangeTimerTiles(int newGameTimerInt)
+    {
+        var currentTileInt = newGameTimerInt % timerTileSpritesPrefabs.Count;
+        var currentTileSprite = timerTileSpritesPrefabs[currentTileInt];
+        if (currentTileInt == 0)
+        {
+            Destroy(allTimerTiles[0]);
+            allTimerTiles.RemoveAt(0);
+        }
+
+        if (allTimerTiles.Count == 0) return;
+
+        var currentTopTimerTile = allTimerTiles[0];
+
+        currentTopTimerTile.sprite = currentTileSprite;
     }
 
     private void BuildingBuildingTetrisControllerOnBuildingGameOver(object sender, EventArgs e)
@@ -54,6 +109,7 @@ public class BuildingTetrisUI : MonoBehaviour
     private void ChooseMinigameUIOnPlayBuildingTetrisButtonPressed(object sender, EventArgs e)
     {
         Show();
+        InitializeTimerTiles();
         OnTetrisGameStart?.Invoke(this, EventArgs.Empty);
     }
 

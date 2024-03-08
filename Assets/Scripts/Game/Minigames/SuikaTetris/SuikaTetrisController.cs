@@ -10,11 +10,25 @@ public class SuikaTetrisController : MonoBehaviour
     public event EventHandler OnSuikaTetrisBoardClose;
     public event EventHandler OnSuikaTetrisGameStart;
 
+    public event EventHandler<OnTimerChangedEventArgs> OnTimerChanged;
+
+    public class OnTimerChangedEventArgs : EventArgs
+    {
+        public int newTimeInt;
+    }
+
     #endregion
 
     #region variables & References
 
     [SerializeField] private SuikaTetrisBoard suikaTetrisBoard;
+
+    [SerializeField] private float maxGameTime = 60f;
+
+    private float gameTimer;
+    private int previousGameTimeInt;
+    private bool isGameStarted;
+
 
     private bool isFirstUpdate = true;
 
@@ -47,12 +61,19 @@ public class SuikaTetrisController : MonoBehaviour
     private void SuikaTetrisUI_OnTetrisGameClose(object sender, EventArgs e)
     {
         Hide();
+
+        isGameStarted = false;
     }
 
     private void ChooseMinigameUIOnPlaySuikaTetrisButtonPressed(object sender, EventArgs e)
     {
         Show();
         OnSuikaTetrisGameStart?.Invoke(this, EventArgs.Empty);
+
+        gameTimer = maxGameTime;
+        previousGameTimeInt = (int)maxGameTime;
+
+        isGameStarted = true;
     }
 
     private void LateUpdate()
@@ -61,6 +82,34 @@ public class SuikaTetrisController : MonoBehaviour
         {
             isFirstUpdate = false;
             Hide();
+        }
+    }
+
+    #endregion
+
+    #region Update
+
+    private void Update()
+    {
+        if (!isGameStarted) return;
+
+        gameTimer -= Time.deltaTime;
+
+        if (gameTimer <= 0f)
+        {
+            Hide();
+            OnSuikaTetrisBoardClose?.Invoke(this, EventArgs.Empty);
+            isGameStarted = false;
+            return;
+        }
+
+        if (previousGameTimeInt > (int)gameTimer)
+        {
+            previousGameTimeInt = (int)gameTimer;
+            OnTimerChanged?.Invoke(this, new OnTimerChangedEventArgs
+            {
+                newTimeInt = previousGameTimeInt
+            });
         }
     }
 
@@ -79,4 +128,9 @@ public class SuikaTetrisController : MonoBehaviour
     }
 
     #endregion
+
+    public float GetMaxGameTime()
+    {
+        return maxGameTime;
+    }
 }

@@ -9,12 +9,24 @@ public class BuildTetrisController : MonoBehaviour
 
     public event EventHandler OnBuildingTetrisBoardClose;
     public event EventHandler OnBuildingTetrisGameStart;
+    public event EventHandler<OnTimerChangedEventArgs> OnTimerChanged;
+
+    public class OnTimerChangedEventArgs : EventArgs
+    {
+        public int newTimeInt;
+    }
 
     #endregion
 
     #region variables & References
 
     [SerializeField] private BuildingTetrisBoard buildingTetrisBoard;
+
+    [SerializeField] private float maxGameTime = 60f;
+
+    private float gameTimer;
+    private int previousGameTimeInt;
+    private bool isGameStarted;
 
     private bool isFirstUpdate = true;
 
@@ -41,6 +53,8 @@ public class BuildTetrisController : MonoBehaviour
     private void BuildingTetrisUI_OnBuildingTetrisGameClose(object sender, EventArgs e)
     {
         Hide();
+
+        isGameStarted = false;
     }
 
     private void BuildingTetrisBoard_OnGameOver(object sender, EventArgs e)
@@ -51,9 +65,13 @@ public class BuildTetrisController : MonoBehaviour
 
     private void ChooseMinigameUIOnPlayBuildingBuildTetrisButtonPressed(object sender, EventArgs e)
     {
-        Debug.Log("Work");
         Show();
         OnBuildingTetrisGameStart?.Invoke(this, EventArgs.Empty);
+
+        gameTimer = maxGameTime;
+        previousGameTimeInt = (int)maxGameTime;
+
+        isGameStarted = true;
     }
 
     private void LateUpdate()
@@ -62,6 +80,34 @@ public class BuildTetrisController : MonoBehaviour
         {
             isFirstUpdate = false;
             Hide();
+        }
+    }
+
+    #endregion
+
+    #region Update
+
+    private void Update()
+    {
+        if (!isGameStarted) return;
+
+        gameTimer -= Time.deltaTime;
+
+        if (gameTimer <= 0f)
+        {
+            Hide();
+            OnBuildingTetrisBoardClose?.Invoke(this, EventArgs.Empty);
+            isGameStarted = false;
+            return;
+        }
+
+        if (previousGameTimeInt > (int)gameTimer)
+        {
+            previousGameTimeInt = (int)gameTimer;
+            OnTimerChanged?.Invoke(this, new OnTimerChangedEventArgs
+            {
+                newTimeInt = previousGameTimeInt
+            });
         }
     }
 
@@ -80,4 +126,9 @@ public class BuildTetrisController : MonoBehaviour
     }
 
     #endregion
+
+    public float GetMaxGameTime()
+    {
+        return maxGameTime;
+    }
 }

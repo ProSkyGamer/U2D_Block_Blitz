@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,15 @@ public class SuikaTetrisUI : MonoBehaviour
     [SerializeField] private Button dropPieceButton;
     [SerializeField] private Button movePieceRightButton;
     [SerializeField] private Button movePieceLeftButton;
+
+    [SerializeField] private Transform timerTilesGrid;
+    [SerializeField] private Transform timerTilePrefab;
+    private readonly List<Image> allTimerTiles = new();
+    [SerializeField] private List<Sprite> timerTileSpritesPrefabs;
+    private SameGameSingleTile[,] tilesField;
+
+    private float gameTimer;
+    private int previousGameTimeInt;
 
     private void Awake()
     {
@@ -39,7 +49,55 @@ public class SuikaTetrisUI : MonoBehaviour
 
         SuikaTetrisController.Instance.OnSuikaTetrisBoardClose += SuikaTetrisController_OnGameOver;
 
+        SuikaTetrisController.Instance.OnTimerChanged += SuikaTetrisController_OnTimerChanged;
+
         Hide();
+    }
+
+    private void SuikaTetrisController_OnTimerChanged(object sender, SuikaTetrisController.OnTimerChangedEventArgs e)
+    {
+        ChangeTimerTiles(e.newTimeInt);
+    }
+
+    private void InitializeTimerTiles()
+    {
+        var timerTilesTransform = timerTilesGrid.GetComponentsInChildren<Transform>();
+
+        foreach (var timerTileTransform in timerTilesTransform)
+        {
+            if (timerTileTransform == timerTilesGrid) continue;
+
+            Destroy(timerTileTransform.gameObject);
+        }
+
+        allTimerTiles.Clear();
+
+        var timerTilesCount =
+            Mathf.CeilToInt(SuikaTetrisController.Instance.GetMaxGameTime() / timerTileSpritesPrefabs.Count);
+
+        for (var i = 0; i < timerTilesCount; i++)
+        {
+            var newTimerTileTransform = Instantiate(timerTilePrefab, timerTilesGrid);
+            var newTimerTileImage = newTimerTileTransform.GetComponent<Image>();
+            allTimerTiles.Add(newTimerTileImage);
+        }
+    }
+
+    private void ChangeTimerTiles(int newGameTimerInt)
+    {
+        var currentTileInt = newGameTimerInt % timerTileSpritesPrefabs.Count;
+        var currentTileSprite = timerTileSpritesPrefabs[currentTileInt];
+        if (currentTileInt == 0)
+        {
+            Destroy(allTimerTiles[0]);
+            allTimerTiles.RemoveAt(0);
+        }
+
+        if (allTimerTiles.Count == 0) return;
+
+        var currentTopTimerTile = allTimerTiles[0];
+
+        currentTopTimerTile.sprite = currentTileSprite;
     }
 
     private void SuikaTetrisController_OnGameOver(object sender, EventArgs e)
@@ -52,6 +110,7 @@ public class SuikaTetrisUI : MonoBehaviour
     {
         Show();
         OnTetrisGameStart?.Invoke(this, EventArgs.Empty);
+        InitializeTimerTiles();
     }
 
     private void Show()

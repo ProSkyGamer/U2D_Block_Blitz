@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class BuildingTetrisUI : MonoBehaviour
 {
-    public static event EventHandler OnTetrisGameStart;
-    public static event EventHandler OnTetrisGameClose;
+    public static event EventHandler OnCloseButtonPressed;
     public static event EventHandler OnRotatePieceE;
     public static event EventHandler OnRotatePieceQ;
     public static event EventHandler OnDropPiece;
@@ -32,7 +31,7 @@ public class BuildingTetrisUI : MonoBehaviour
     {
         closeButton.onClick.AddListener(() =>
         {
-            OnTetrisGameClose?.Invoke(this, EventArgs.Empty);
+            OnCloseButtonPressed?.Invoke(this, EventArgs.Empty);
             Hide();
         });
         rotatePieceEButton.onClick.AddListener(() => { OnRotatePieceE?.Invoke(this, EventArgs.Empty); });
@@ -47,14 +46,20 @@ public class BuildingTetrisUI : MonoBehaviour
     {
         ChooseMinigameUI.OnPlayBuildingTetrisButtonPressed += ChooseMinigameUIOnPlayBuildingTetrisButtonPressed;
 
-        BuildTetrisController.Instance.OnBuildingTetrisBoardClose += BuildingBuildingTetrisControllerOnBuildingGameOver;
+        MinigameResultMessagesUI.OnMessageClosed += MinigameResultMessagesUI_OnMessageClosed;
 
         BuildTetrisController.Instance.OnTimerChanged += BuildingTetrisController_OnTimerChanged;
 
         Hide();
     }
 
-    private void BuildingTetrisController_OnTimerChanged(object sender, BuildTetrisController.OnTimerChangedEventArgs e)
+    private void MinigameResultMessagesUI_OnMessageClosed(object sender, EventArgs e)
+    {
+        OnCloseButtonPressed?.Invoke(this, EventArgs.Empty);
+        Hide();
+    }
+
+    private void BuildingTetrisController_OnTimerChanged(object sender, MinigameBase.OnTimerChangedEventArgs e)
     {
         ChangeTimerTiles(e.newTimeInt);
     }
@@ -100,17 +105,10 @@ public class BuildingTetrisUI : MonoBehaviour
         currentTopTimerTile.sprite = currentTileSprite;
     }
 
-    private void BuildingBuildingTetrisControllerOnBuildingGameOver(object sender, EventArgs e)
-    {
-        OnTetrisGameClose?.Invoke(this, EventArgs.Empty);
-        Hide();
-    }
-
     private void ChooseMinigameUIOnPlayBuildingTetrisButtonPressed(object sender, EventArgs e)
     {
         Show();
         InitializeTimerTiles();
-        OnTetrisGameStart?.Invoke(this, EventArgs.Empty);
     }
 
     private void Show()

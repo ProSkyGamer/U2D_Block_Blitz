@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class SameGameUI : MonoBehaviour
+public class SameGameUI : MinigameBase
 {
     #region Events
 
-    public static event EventHandler OnCandyCrushGameClose;
+    public static event EventHandler OnCloseButtonPressed;
 
     #endregion
 
@@ -19,18 +19,11 @@ public class SameGameUI : MonoBehaviour
     [SerializeField] private Grid allTileButtonsGrid;
     [SerializeField] private List<Transform> allTilesButtonPrefabs;
     [SerializeField] private Vector2Int fieldSize = new(9, 9);
-    [SerializeField] private float maxGameTime = 60f;
     [SerializeField] private Transform timerTilesGrid;
     [SerializeField] private Transform timerTilePrefab;
     private readonly List<Image> allTimerTiles = new();
     [SerializeField] private List<Sprite> timerTileSpritesPrefabs;
     private SameGameSingleTile[,] tilesField;
-
-    private float gameTimer;
-    private int previousGameTimeInt;
-    private bool isGameStarted;
-
-    private bool isFirstUpdate = true;
 
     private RectInt FieldBounds
     {
@@ -49,8 +42,9 @@ public class SameGameUI : MonoBehaviour
     {
         closeButton.onClick.AddListener(() =>
         {
+            OnCloseButtonPressed?.Invoke(this, EventArgs.Empty);
             Hide();
-            OnCandyCrushGameClose?.Invoke(this, EventArgs.Empty);
+            isGameStarted = false;
         });
     }
 
@@ -127,6 +121,13 @@ public class SameGameUI : MonoBehaviour
         ChooseMinigameUI.OnPlayCandyCrushButtonPressed += ChooseMinigameUI_OnPlayCandyCrushButtonPressed;
 
         SameGameSingleTile.OnTryRemoveTile += CandyCrushSingleTile_OnTryRemoveTile;
+
+        OnTimerChanged += SameGameUI_OnTimerChanged;
+    }
+
+    private void SameGameUI_OnTimerChanged(object sender, OnTimerChangedEventArgs e)
+    {
+        ChangeTimerTiles(e.newTimeInt);
     }
 
     private void ChooseMinigameUI_OnPlayCandyCrushButtonPressed(object sender, EventArgs e)
@@ -135,14 +136,12 @@ public class SameGameUI : MonoBehaviour
         StartGame();
     }
 
-    private void StartGame()
+    protected override void StartGame()
     {
+        base.StartGame();
+
         InitializeField();
         InitializeTimerTiles();
-        gameTimer = maxGameTime;
-        previousGameTimeInt = (int)maxGameTime;
-
-        isGameStarted = true;
     }
 
     private void CandyCrushSingleTile_OnTryRemoveTile(object sender, SameGameSingleTile.OnTryRemoveTileEventArgs e)
@@ -201,12 +200,7 @@ public class SameGameUI : MonoBehaviour
             OffsetVerticalLines();
             UpdateFieldVisual();
 
-            if (!IsAnyBreakableTilesLeft())
-            {
-                Hide();
-                OnCandyCrushGameClose?.Invoke(this, EventArgs.Empty);
-                isGameStarted = false;
-            }
+            if (!IsAnyBreakableTilesLeft()) EndGame(IsAnyTileLeft() ? GameOverReason.Failed : GameOverReason.Win);
         }
     }
 
@@ -249,39 +243,9 @@ public class SameGameUI : MonoBehaviour
 
     #endregion
 
-    #region Update
-
-    private void Update()
+    private void ChangeTimerTiles(int newGameTimerInt)
     {
-        if (isFirstUpdate)
-        {
-            isFirstUpdate = false;
-            Hide();
-            return;
-        }
-
-        if (!isGameStarted) return;
-
-        gameTimer -= Time.deltaTime;
-
-        if (gameTimer <= 0f)
-        {
-            Hide();
-            OnCandyCrushGameClose?.Invoke(this, EventArgs.Empty);
-            isGameStarted = false;
-            return;
-        }
-
-        if (previousGameTimeInt > (int)gameTimer)
-        {
-            previousGameTimeInt = (int)gameTimer;
-            ChangeTimerTiles();
-        }
-    }
-
-    private void ChangeTimerTiles()
-    {
-        var currentTileInt = previousGameTimeInt % timerTileSpritesPrefabs.Count;
+        var currentTileInt = newGameTimerInt % timerTileSpritesPrefabs.Count;
         var currentTileSprite = timerTileSpritesPrefabs[currentTileInt];
         if (currentTileInt == 0)
         {
@@ -295,8 +259,6 @@ public class SameGameUI : MonoBehaviour
 
         currentTopTimerTile.sprite = currentTileSprite;
     }
-
-    #endregion
 
     #region Offseting Tiles
 

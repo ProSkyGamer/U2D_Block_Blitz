@@ -37,7 +37,7 @@ public class BuildingTetrisBoard : TetrisBoardBasic
     {
         base.Start();
 
-        BuildTetrisController.Instance.OnBuildingTetrisGameStart +=
+        BuildTetrisController.Instance.OnGameStarted +=
             BuildingBuildingTetrisControllerOnBuildingTetrisGameStart;
     }
 
@@ -222,9 +222,9 @@ public class BuildingTetrisBoard : TetrisBoardBasic
         Debug.Log($"required: {leftRequiredZoneTilesCount} forbidden: {leftTilesInForbiddenZone}");
 
         if (leftRequiredZoneTilesCount <= 0)
-            EndGame();
+            EndGame(true);
         else if (leftTilesInForbiddenZone < 0)
-            EndGame();
+            EndGame(false);
     }
 
     #endregion

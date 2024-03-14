@@ -43,22 +43,19 @@ public class ChooseMinigameUI : MonoBehaviour
 
     private void Start()
     {
-        BuildingTetrisUI.OnTetrisGameClose += TetrisMinigameController_OnTetrisGameClose;
-        SuikaTetrisUI.OnTetrisGameClose += SuikaMinigameControllerOnOnTetrisGameClose;
-        SameGameUI.OnCandyCrushGameClose += CandyCrushUI_OnCandyCrushGameClose;
+        MinigameResultMessagesUI.OnMessageClosed += MinigameResultMessagesUI_OnMessageClosed;
+
+        SuikaTetrisUI.OnCloseButtonPressed += AnyMinigame_OnCloseButtonPressed;
+        BuildingTetrisUI.OnCloseButtonPressed += AnyMinigame_OnCloseButtonPressed;
+        SameGameUI.OnCloseButtonPressed += AnyMinigame_OnCloseButtonPressed;
     }
 
-    private void CandyCrushUI_OnCandyCrushGameClose(object sender, EventArgs e)
+    private void AnyMinigame_OnCloseButtonPressed(object sender, EventArgs e)
     {
         Show();
     }
 
-    private void SuikaMinigameControllerOnOnTetrisGameClose(object sender, EventArgs e)
-    {
-        Show();
-    }
-
-    private void TetrisMinigameController_OnTetrisGameClose(object sender, EventArgs e)
+    private void MinigameResultMessagesUI_OnMessageClosed(object sender, EventArgs e)
     {
         Show();
     }

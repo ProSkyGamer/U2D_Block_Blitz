@@ -56,10 +56,12 @@
     <Compile Include="Assets\Scripts\Game\UI\SuikaTetrisUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\GhostBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildTetrisController.cs" />
+    <Compile Include="Assets\Scripts\Game\Minigames\MinigameBase.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SameGame\SameGameUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\BuildingSuikaFigure.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaTetrisBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\FigureType.cs" />
+    <Compile Include="Assets\Scripts\Game\Minigames\MinigameResultMessagesUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaTetrisController.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildingTetrisFigure.cs" />
     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />

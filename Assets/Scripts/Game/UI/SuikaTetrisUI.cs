@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SuikaTetrisUI : MonoBehaviour
 {
     public static event EventHandler OnTetrisGameStart;
-    public static event EventHandler OnTetrisGameClose;
+    public static event EventHandler OnCloseButtonPressed;
     public static event EventHandler OnRotatePieceE;
     public static event EventHandler OnRotatePieceQ;
     public static event EventHandler OnDropPiece;
@@ -33,7 +33,7 @@ public class SuikaTetrisUI : MonoBehaviour
     {
         closeButton.onClick.AddListener(() =>
         {
-            OnTetrisGameClose?.Invoke(this, EventArgs.Empty);
+            OnCloseButtonPressed?.Invoke(this, EventArgs.Empty);
             Hide();
         });
         rotatePieceEButton.onClick.AddListener(() => { OnRotatePieceE?.Invoke(this, EventArgs.Empty); });
@@ -47,14 +47,20 @@ public class SuikaTetrisUI : MonoBehaviour
     {
         ChooseMinigameUI.OnPlaySuikaTetrisButtonPressed += ChooseMinigameUIOnPlaySuikaTetrisButtonPressed;
 
-        SuikaTetrisController.Instance.OnSuikaTetrisBoardClose += SuikaTetrisController_OnGameOver;
+        MinigameResultMessagesUI.OnMessageClosed += MinigameResultMessagesUI_OnMessageClosed;
 
         SuikaTetrisController.Instance.OnTimerChanged += SuikaTetrisController_OnTimerChanged;
 
         Hide();
     }
 
-    private void SuikaTetrisController_OnTimerChanged(object sender, SuikaTetrisController.OnTimerChangedEventArgs e)
+    private void MinigameResultMessagesUI_OnMessageClosed(object sender, EventArgs e)
+    {
+        OnCloseButtonPressed?.Invoke(this, EventArgs.Empty);
+        Hide();
+    }
+
+    private void SuikaTetrisController_OnTimerChanged(object sender, MinigameBase.OnTimerChangedEventArgs e)
     {
         ChangeTimerTiles(e.newTimeInt);
     }
@@ -98,12 +104,6 @@ public class SuikaTetrisUI : MonoBehaviour
         var currentTopTimerTile = allTimerTiles[0];
 
         currentTopTimerTile.sprite = currentTileSprite;
-    }
-
-    private void SuikaTetrisController_OnGameOver(object sender, EventArgs e)
-    {
-        OnTetrisGameClose?.Invoke(this, EventArgs.Empty);
-        Hide();
     }
 
     private void ChooseMinigameUIOnPlaySuikaTetrisButtonPressed(object sender, EventArgs e)

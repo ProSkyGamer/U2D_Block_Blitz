@@ -7,7 +7,7 @@ public class SuikaTetrisBoard : TetrisBoardBasic
     {
         base.Start();
 
-        SuikaTetrisController.Instance.OnSuikaTetrisGameStart += SuikaTetrisController_OnSuikaTetrisGameStart;
+        SuikaTetrisController.Instance.OnGameStarted += SuikaTetrisController_OnSuikaTetrisGameStart;
     }
 
     private void SuikaTetrisController_OnSuikaTetrisGameStart(object sender, EventArgs e)

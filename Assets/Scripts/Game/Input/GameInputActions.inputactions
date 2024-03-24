@@ -1,0 +1,174 @@
+{
+    "name": "GameInputActions",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "a122400b-bc96-4c7f-a695-fd024ba5c548",
+            "actions": [
+                {
+                    "name": "K_MoveLeft",
+                    "type": "Button",
+                    "id": "dcb47e0c-a4e3-4248-9cd8-dd61cc034cbd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "K_MoveRight",
+                    "type": "Button",
+                    "id": "864f89fc-5f8c-40dd-b6f8-1b243cb8aefd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "K_MoveDown",
+                    "type": "Button",
+                    "id": "4f0b63b0-2b8d-4322-8a3b-bc4939c74e2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "K_LockFigure",
+                    "type": "Button",
+                    "id": "7bc3aed3-1758-410f-815f-2ce24b01a90b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "K_RotateRight",
+                    "type": "Button",
+                    "id": "5bf2a642-05b6-4ef4-a7cd-b34b318cdc04",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "K_RotateLeft",
+                    "type": "Button",
+                    "id": "0b9ab105-6b26-4bf8-a5c6-dc851aad0d84",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "S_Swipe",
+                    "type": "Button",
+                    "id": "1bb37311-9bdf-4301-ba16-421170bd3216",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "S_Position",
+                    "type": "Value",
+                    "id": "17cd4781-5592-4890-9301-cb994d923070",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8a6e0115-2beb-485b-ad76-a32a03f3f4eb",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "K_MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ce0fdf7-fb43-472a-ab60-15f179f74626",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "K_MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6f779b1-6e79-45fe-a17d-994f01b5f687",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "K_MoveDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e0d0ead-3e85-4cec-abb4-08b2485df72d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "K_LockFigure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ec41abf-ecf2-44e5-bfde-3522d88bd2f1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "K_RotateRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d4bc115-5300-40e3-9c96-1eeda699dc0c",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "K_RotateLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ddf3b89-e196-4f85-801d-a42abdebbb9b",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S_Swipe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89a2ca80-6e77-4fab-9ff2-221c4ee06045",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S_Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BuildingSuikaFigure : Figure
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         SuikaTetrisUI.OnRotatePieceQ += TetrisMinigameController_OnRotatePieceQ;
         SuikaTetrisUI.OnRotatePieceE += TetrisMinigameController_OnRotatePieceE;
         SuikaTetrisUI.OnMovePieceRight += TetrisMinigameControllerOnOnMovePieceRight;

@@ -20,6 +20,8 @@ public class Figure : MonoBehaviour
 
     [SerializeField] protected bool isHasLockDelay = true;
     [SerializeField] protected float lockDelay = 0.5f;
+    [SerializeField] protected float swipeDistanceForMovement = 50f;
+    [SerializeField] protected float swipeDistanceForLockingPiece = 250f;
 
     //Change
     private TetrisBoardBasic connectedBoard;
@@ -31,6 +33,8 @@ public class Figure : MonoBehaviour
     private float stepTimer;
     private float lockTimer;
 
+    private bool isGameActive;
+
     #endregion
 
     #region Initialization
@@ -38,9 +42,22 @@ public class Figure : MonoBehaviour
     private void Awake()
     {
         connectedBoard = GetComponent<TetrisBoardBasic>();
+
+        connectedBoard.OnGameStarted += ConnectedBoard_OnGameStarted;
+        connectedBoard.OnGameOver += ConnectedBoard_OnGameOver;
     }
 
-    public void Initialize(Vector3Int startingPosition, FigureData newFigureData)
+    private void ConnectedBoard_OnGameOver(object sender, TetrisBoardBasic.OnGameOverEventArgs e)
+    {
+        isGameActive = false;
+    }
+
+    private void ConnectedBoard_OnGameStarted(object sender, EventArgs e)
+    {
+        isGameActive = true;
+    }
+
+    public void InitializeFigure(Vector3Int startingPosition, FigureData newFigureData)
     {
         figureTilemapPosition = startingPosition;
         figureData = newFigureData;
@@ -57,30 +74,109 @@ public class Figure : MonoBehaviour
         OnFigureMoved?.Invoke(this, EventArgs.Empty);
     }
 
+    protected virtual void Start()
+    {
+        GameInput.Instance.OnKeyboardMoveLeft += GameInput_OnKeyboardMoveLeft;
+        GameInput.Instance.OnKeyboardMoveRight += GameInput_OnKeyboardMoveRight;
+        GameInput.Instance.OnKeyboardMoveDown += GameInput_OnKeyboardMoveDown;
+        GameInput.Instance.OnKeyboardLockFigure += GameInput_OnKeyboardLockFigure;
+        GameInput.Instance.OnKeyboardRotateLeft += GameInput_OnKeyboardRotateLeft;
+        GameInput.Instance.OnKeyboardRotateRight += GameInput_OnKeyboardRotateRight;
+
+        GameInput.Instance.OnScreenSwipe += GameInput_OnScreenSwipe;
+    }
+
+    private void GameInput_OnScreenSwipe(object sender, GameInput.OnScreenSwipeEventArgs e)
+    {
+        if (!isGameActive) return;
+
+        PerformActionBasedOnSwipe(e.swipeVector);
+    }
+
+    private void PerformActionBasedOnSwipe(Vector2 swipeVector)
+    {
+        Debug.Log($"{swipeVector.x} {swipeVector.y}");
+
+        var hardLockMultiplier = 10;
+        var swipeDirection = swipeVector.x > 0 && swipeVector.x > swipeDistanceForMovement ? Vector2Int.right :
+            swipeVector.x < 0 && -swipeVector.x > swipeDistanceForMovement ? Vector2Int.left :
+            swipeVector.y < 0 && -swipeVector.y > swipeDistanceForLockingPiece ? Vector2Int.down * hardLockMultiplier :
+            swipeVector.y < 0 && -swipeVector.y > swipeDistanceForMovement ? Vector2Int.down : Vector2Int.zero;
+
+        if (swipeDirection != Vector2Int.zero)
+        {
+            if (swipeDirection == Vector2Int.down * hardLockMultiplier)
+            {
+                HardDrop();
+                return;
+            }
+
+            if (swipeDirection == Vector2Int.down && !isFallingDown) return;
+
+            Move(swipeDirection);
+        }
+        else
+        {
+            var rotationDirection = swipeVector.x < 0 ? -1 : 1;
+            Rotate(rotationDirection);
+        }
+    }
+
+    private void GameInput_OnKeyboardMoveLeft(object sender, EventArgs e)
+    {
+        if (!isGameActive) return;
+
+        Move(Vector2Int.left);
+    }
+
+    private void GameInput_OnKeyboardMoveRight(object sender, EventArgs e)
+    {
+        if (!isGameActive) return;
+
+        Move(Vector2Int.right);
+    }
+
+    private void GameInput_OnKeyboardMoveDown(object sender, EventArgs e)
+    {
+        if (!isGameActive) return;
+        if (!isFallingDown) return;
+
+        Move(Vector2Int.down);
+    }
+
+    private void GameInput_OnKeyboardLockFigure(object sender, EventArgs e)
+    {
+        if (!isGameActive) return;
+
+        HardDrop();
+    }
+
+    private void GameInput_OnKeyboardRotateLeft(object sender, EventArgs e)
+    {
+        if (!isGameActive) return;
+
+        Rotate(-1);
+    }
+
+    private void GameInput_OnKeyboardRotateRight(object sender, EventArgs e)
+    {
+        if (!isGameActive) return;
+
+        Rotate(1);
+    }
+
     #endregion
 
     #region Update & Temp movement
 
     private void Update()
     {
+        if (!isGameActive) return;
+
         lockTimer -= Time.deltaTime;
 
         if (isFallingDown)
             stepTimer -= Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.Q))
-            Rotate(-1);
-        else if (Input.GetKeyDown(KeyCode.E)) Rotate(1);
-
-        if (Input.GetKeyDown(KeyCode.A))
-            Move(Vector2Int.left);
-        else if (Input.GetKeyDown(KeyCode.D)) Move(Vector2Int.right);
-
-        if (Input.GetKeyDown(KeyCode.S))
-            Step();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            HardDrop();
 
         if (stepTimer <= 0 && isFallingDown)
             Step();

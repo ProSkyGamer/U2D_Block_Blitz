@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BuildingTetrisFigure : Figure
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         BuildingTetrisUI.OnRotatePieceQ += TetrisMinigameController_OnRotatePieceQ;
         BuildingTetrisUI.OnRotatePieceE += TetrisMinigameController_OnRotatePieceE;
         BuildingTetrisUI.OnMovePieceRight += TetrisMinigameControllerOnOnMovePieceRight;

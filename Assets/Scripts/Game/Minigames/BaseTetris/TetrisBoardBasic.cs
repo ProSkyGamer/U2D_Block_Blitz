@@ -8,6 +8,7 @@ public class TetrisBoardBasic : MonoBehaviour
 {
     #region Events
 
+    public event EventHandler OnGameStarted;
     public event EventHandler<OnGameOverEventArgs> OnGameOver;
 
     public class OnGameOverEventArgs : EventArgs
@@ -28,6 +29,8 @@ public class TetrisBoardBasic : MonoBehaviour
     private Figure activeFigure;
 
     private GhostBoard ghostBoard;
+
+    private bool isGameActive;
 
     protected RectInt FieldBounds
     {
@@ -88,11 +91,16 @@ public class TetrisBoardBasic : MonoBehaviour
     {
         boardTilemap.ClearAllTiles();
 
+        isGameActive = true;
+        OnGameStarted?.Invoke(this, EventArgs.Empty);
+
         SpawnPiece();
     }
 
     protected void EndGame(bool isWin)
     {
+        isGameActive = false;
+
         OnGameOver?.Invoke(this, new OnGameOverEventArgs
         {
             isWin = isWin
@@ -105,6 +113,8 @@ public class TetrisBoardBasic : MonoBehaviour
 
     private void SpawnPiece()
     {
+        if (!isGameActive) return;
+
         var randomIndex = Random.Range(0, allFiguresData.Length);
         var data = allFiguresData[randomIndex];
 
@@ -114,7 +124,7 @@ public class TetrisBoardBasic : MonoBehaviour
         if (!IsValidPosition(newFigureCells, spawnPosition))
             EndGame(false);
 
-        activeFigure.Initialize(spawnPosition, data);
+        activeFigure.InitializeFigure(spawnPosition, data);
     }
 
     #endregion

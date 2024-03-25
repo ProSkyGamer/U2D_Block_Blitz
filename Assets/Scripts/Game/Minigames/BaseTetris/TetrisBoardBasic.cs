@@ -26,7 +26,12 @@ public class TetrisBoardBasic : MonoBehaviour
     [SerializeField] protected bool isDeletingLines = true;
 
     protected Tilemap boardTilemap;
+    [SerializeField] protected Tilemap nextActiveFigureTilemap;
+
+    private FigureData previousActiveFigureData;
+    private FigureData currentActiveFigureData;
     private Figure activeFigure;
+    private FigureData nextActiveFigureData;
 
     private GhostBoard ghostBoard;
 
@@ -115,16 +120,41 @@ public class TetrisBoardBasic : MonoBehaviour
     {
         if (!isGameActive) return;
 
-        var randomIndex = Random.Range(0, allFiguresData.Length);
-        var data = allFiguresData[randomIndex];
+        if (nextActiveFigureTilemap != null)
+            nextActiveFigureTilemap.ClearAllTiles();
+
+        previousActiveFigureData = currentActiveFigureData;
+        if (previousActiveFigureData.figureCells == null)
+        {
+            var currentFigureRandomIndex = Random.Range(0, allFiguresData.Length);
+
+            currentActiveFigureData = allFiguresData[currentFigureRandomIndex];
+        }
+        else
+        {
+            currentActiveFigureData = nextActiveFigureData;
+        }
+
+        do
+        {
+            var nextFigureRandomIndex = Random.Range(0, allFiguresData.Length);
+            nextActiveFigureData = allFiguresData[nextFigureRandomIndex];
+        } while (previousActiveFigureData.figureCells != null &&
+                 nextActiveFigureData.figureCells == previousActiveFigureData.figureCells);
 
         var newFigureCells = new List<Vector3Int>();
-        foreach (var newFigureCell in data.figureCells) newFigureCells.Add((Vector3Int)newFigureCell);
+        foreach (var newFigureCell in currentActiveFigureData.figureCells)
+            newFigureCells.Add((Vector3Int)newFigureCell);
 
         if (!IsValidPosition(newFigureCells, spawnPosition))
             EndGame(false);
 
-        activeFigure.InitializeFigure(spawnPosition, data);
+        activeFigure.InitializeFigure(spawnPosition, currentActiveFigureData);
+
+        if (nextActiveFigureTilemap != null)
+            foreach (var nextActiveFigureDataCellPosition in nextActiveFigureData.figureCells)
+                nextActiveFigureTilemap.SetTile((Vector3Int)nextActiveFigureDataCellPosition,
+                    nextActiveFigureData.figureTile);
     }
 
     #endregion

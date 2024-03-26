@@ -9,6 +9,7 @@ public class ChooseMinigameUI : MonoBehaviour
     public static event EventHandler OnPlayCandyCrushButtonPressed;
     public static event EventHandler OnPlayBuildingTetrisButtonPressed;
     public static event EventHandler OnPlaySuikaTetrisButtonPressed;
+    public static event EventHandler OnInfoButtonPressed;
 
     #endregion
 
@@ -17,6 +18,7 @@ public class ChooseMinigameUI : MonoBehaviour
     [SerializeField] private Button playCandyCrushButton;
     [SerializeField] private Button playTetrisButton;
     [SerializeField] private Button playTetrisSuikaButton;
+    [SerializeField] private Button infoButton;
 
     #endregion
 
@@ -39,6 +41,12 @@ public class ChooseMinigameUI : MonoBehaviour
             OnPlaySuikaTetrisButtonPressed?.Invoke(this, EventArgs.Empty);
             Hide();
         });
+
+        infoButton.onClick.AddListener(() =>
+        {
+            OnInfoButtonPressed?.Invoke(this, EventArgs.Empty);
+            Hide();
+        });
     }
 
     private void Start()
@@ -48,6 +56,13 @@ public class ChooseMinigameUI : MonoBehaviour
         SuikaTetrisUI.OnCloseButtonPressed += AnyMinigame_OnCloseButtonPressed;
         BuildingTetrisUI.OnCloseButtonPressed += AnyMinigame_OnCloseButtonPressed;
         SameGameUI.OnCloseButtonPressed += AnyMinigame_OnCloseButtonPressed;
+
+        InfoUI.OnTabClosed += InfoUI_OnTabClosed;
+    }
+
+    private void InfoUI_OnTabClosed(object sender, EventArgs e)
+    {
+        Show();
     }
 
     private void AnyMinigame_OnCloseButtonPressed(object sender, EventArgs e)

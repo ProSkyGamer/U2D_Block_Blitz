@@ -3,6 +3,20 @@ using UnityEngine;
 
 public class SuikaTetrisBoard : TetrisBoardBasic
 {
+    public static event EventHandler<OnScoreChangedEventArgs> OnScoreChanged;
+
+    public class OnScoreChangedEventArgs : EventArgs
+    {
+        public int newScore;
+    }
+
+    [SerializeField] private int minWinScore = 30;
+
+    [SerializeField] private int scoreForDroppedFigure = 1;
+    [SerializeField] private int scoreForCombinedFigure = 3;
+
+    private int currentScore;
+
     protected override void Start()
     {
         base.Start();
@@ -13,6 +27,17 @@ public class SuikaTetrisBoard : TetrisBoardBasic
     private void SuikaTetrisController_OnSuikaTetrisGameStart(object sender, EventArgs e)
     {
         StartGame();
+    }
+
+    protected override void StartGame()
+    {
+        base.StartGame();
+
+        currentScore = 0;
+        OnScoreChanged?.Invoke(this, new OnScoreChangedEventArgs
+        {
+            newScore = currentScore
+        });
     }
 
     protected override void SetFigure(Figure figure, bool isFinalPosition)
@@ -53,6 +78,8 @@ public class SuikaTetrisBoard : TetrisBoardBasic
 
         if (currentChosenFigurePriority != minPriority)
         {
+            currentScore += scoreForCombinedFigure;
+
             var minPiecePriority = -100;
             var connectedPiecePriority = minPiecePriority;
             var newConnectPiece = Vector3Int.zero;
@@ -94,11 +121,23 @@ public class SuikaTetrisBoard : TetrisBoardBasic
         }
         else
         {
+            currentScore += scoreForDroppedFigure;
+
             foreach (var figureCellTilePosition in figureCells)
             {
                 var boardTilePosition = figureCellTilePosition + figurePosition;
                 boardTilemap.SetTile(boardTilePosition, figureTile);
             }
         }
+
+        OnScoreChanged?.Invoke(this, new OnScoreChangedEventArgs
+        {
+            newScore = currentScore
+        });
+    }
+
+    public override bool GetGameResult()
+    {
+        return currentScore >= minWinScore;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,8 @@ public class BuildingTetrisUI : MonoBehaviour
     private readonly List<Image> allTimerTiles = new();
     [SerializeField] private List<Sprite> timerTileSpritesPrefabs;
     private SameGameSingleTile[,] tilesField;
+    [SerializeField] private TextMeshProUGUI requiredTilesLeftCountText;
+    [SerializeField] private TextMeshProUGUI forbiddenTilesLeftCountText;
 
     private void Awake()
     {
@@ -50,7 +53,15 @@ public class BuildingTetrisUI : MonoBehaviour
 
         BuildTetrisController.Instance.OnTimerChanged += BuildingTetrisController_OnTimerChanged;
 
+        BuildingTetrisBoard.OnScoreChanged += BuildingTetrisBoard_OnScoreChanged;
+
         Hide();
+    }
+
+    private void BuildingTetrisBoard_OnScoreChanged(object sender, BuildingTetrisBoard.OnScoreChangedEventArgs e)
+    {
+        forbiddenTilesLeftCountText.text = e.forbiddenTileLeft.ToString();
+        requiredTilesLeftCountText.text = e.requiredTileLeft.ToString();
     }
 
     private void MinigameResultMessagesUI_OnMessageClosed(object sender, EventArgs e)

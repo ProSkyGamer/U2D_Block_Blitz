@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,8 @@ public class SuikaTetrisUI : MonoBehaviour
     [SerializeField] private List<Sprite> timerTileSpritesPrefabs;
     private SameGameSingleTile[,] tilesField;
 
+    [SerializeField] private TextMeshProUGUI scoreCountText;
+
     private float gameTimer;
     private int previousGameTimeInt;
 
@@ -51,7 +54,14 @@ public class SuikaTetrisUI : MonoBehaviour
 
         SuikaTetrisController.Instance.OnTimerChanged += SuikaTetrisController_OnTimerChanged;
 
+        SuikaTetrisBoard.OnScoreChanged += SuikaTetrisBoard_OnScoreChanged;
+
         Hide();
+    }
+
+    private void SuikaTetrisBoard_OnScoreChanged(object sender, SuikaTetrisBoard.OnScoreChangedEventArgs e)
+    {
+        scoreCountText.text = e.newScore.ToString();
     }
 
     private void MinigameResultMessagesUI_OnMessageClosed(object sender, EventArgs e)

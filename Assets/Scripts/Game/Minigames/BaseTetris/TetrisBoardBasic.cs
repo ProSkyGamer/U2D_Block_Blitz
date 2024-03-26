@@ -20,6 +20,8 @@ public class TetrisBoardBasic : MonoBehaviour
 
     #region References & Variables
 
+    [SerializeField] private MinigameBase minigameBase;
+
     [SerializeField] protected FigureData[] allFiguresData;
     [SerializeField] protected Vector3Int spawnPosition = new(-1, 8);
     [SerializeField] protected Vector2Int boardSize = new(10, 20);
@@ -64,6 +66,13 @@ public class TetrisBoardBasic : MonoBehaviour
 
         activeFigure.OnTryingToMoveFigure += ActiveFigure_OnTryingToMoveFigure;
         activeFigure.OnFigureMoved += ActiveFigure_OnFigureMoved;
+
+        minigameBase.OnGameOver += MinigameBase_OnGameOver;
+    }
+
+    private void MinigameBase_OnGameOver(object sender, MinigameBase.OnGameOverEventArgs e)
+    {
+        isGameActive = false;
     }
 
     private void ActiveFigure_OnFigureMoved(object sender, EventArgs e)
@@ -116,7 +125,7 @@ public class TetrisBoardBasic : MonoBehaviour
 
     #region Pieces Spawn
 
-    private void SpawnPiece()
+    protected virtual void SpawnPiece()
     {
         if (!isGameActive) return;
 
@@ -282,6 +291,11 @@ public class TetrisBoardBasic : MonoBehaviour
     public Tilemap GetTilemap()
     {
         return boardTilemap;
+    }
+
+    public virtual bool GetGameResult()
+    {
+        return false;
     }
 
     #endregion

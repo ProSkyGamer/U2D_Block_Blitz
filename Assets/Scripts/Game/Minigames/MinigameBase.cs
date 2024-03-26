@@ -37,6 +37,8 @@ public class MinigameBase : MonoBehaviour
     #region Variables & References
 
     [SerializeField] protected float maxGameTime = 60f;
+    [SerializeField] protected bool isWinPossibleAfterTimerEnds;
+    [SerializeField] protected TetrisBoardBasic tetrisBoard;
 
     private float gameTimer;
     private int previousGameTimeInt;
@@ -83,7 +85,9 @@ public class MinigameBase : MonoBehaviour
         {
             OnGameOver?.Invoke(this, new OnGameOverEventArgs
             {
-                gameOverReason = GameOverReason.TimeOut
+                gameOverReason = isWinPossibleAfterTimerEnds
+                    ? tetrisBoard.GetGameResult() ? GameOverReason.Win : GameOverReason.TimeOut
+                    : GameOverReason.TimeOut
             });
             isGameStarted = false;
             return;

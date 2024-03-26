@@ -6,6 +6,14 @@ using Random = UnityEngine.Random;
 
 public class BuildingTetrisBoard : TetrisBoardBasic
 {
+    public static event EventHandler<OnScoreChangedEventArgs> OnScoreChanged;
+
+    public class OnScoreChangedEventArgs : EventArgs
+    {
+        public int requiredTileLeft;
+        public int forbiddenTileLeft;
+    }
+
     #region Created Classes
 
     [Serializable]
@@ -59,6 +67,11 @@ public class BuildingTetrisBoard : TetrisBoardBasic
         InitializeZonesOnTilemap();
 
         leftTilesInForbiddenZone = maxTileInForbiddenZone;
+
+        OnScoreChanged?.Invoke(this, new OnScoreChangedEventArgs
+        {
+            forbiddenTileLeft = leftTilesInForbiddenZone, requiredTileLeft = leftRequiredZoneTilesCount
+        });
     }
 
     private void InitializeZonesOnTilemap()
@@ -220,6 +233,11 @@ public class BuildingTetrisBoard : TetrisBoardBasic
         }
 
         Debug.Log($"required: {leftRequiredZoneTilesCount} forbidden: {leftTilesInForbiddenZone}");
+
+        OnScoreChanged?.Invoke(this, new OnScoreChangedEventArgs
+        {
+            forbiddenTileLeft = leftTilesInForbiddenZone, requiredTileLeft = leftRequiredZoneTilesCount
+        });
 
         if (leftRequiredZoneTilesCount <= 0)
             EndGame(true);

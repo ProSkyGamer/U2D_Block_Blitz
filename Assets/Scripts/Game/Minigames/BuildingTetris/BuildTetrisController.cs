@@ -1,15 +1,8 @@
 using System;
-using UnityEngine;
 
 public class BuildTetrisController : MinigameBase
 {
     public static BuildTetrisController Instance { get; private set; }
-
-    #region variables & References
-
-    [SerializeField] private BuildingTetrisBoard buildingTetrisBoard;
-
-    #endregion
 
     #region Initialization
 
@@ -26,7 +19,7 @@ public class BuildTetrisController : MinigameBase
         ChooseMinigameUI.OnPlayBuildingTetrisButtonPressed += ChooseMinigameUI_OnPlayBuildingTetrisButtonPressed;
 
         BuildingTetrisUI.OnCloseButtonPressed += BuildingTetrisUIOnBuildingCloseButtonPressed;
-        buildingTetrisBoard.OnGameOver += BuildingTetrisBoard_OnGameOver;
+        tetrisBoard.OnGameOver += BuildingTetrisBoard_OnGameOver;
     }
 
     private void BuildingTetrisBoard_OnGameOver(object sender, TetrisBoardBasic.OnGameOverEventArgs e)

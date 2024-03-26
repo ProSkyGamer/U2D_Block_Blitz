@@ -1,15 +1,8 @@
 using System;
-using UnityEngine;
 
 public class SuikaTetrisController : MinigameBase
 {
     public static SuikaTetrisController Instance { get; private set; }
-
-    #region variables & References
-
-    [SerializeField] private SuikaTetrisBoard suikaTetrisBoard;
-
-    #endregion
 
     #region Initialization
 
@@ -26,7 +19,7 @@ public class SuikaTetrisController : MinigameBase
         ChooseMinigameUI.OnPlaySuikaTetrisButtonPressed += ChooseMinigameUIOnPlaySuikaTetrisButtonPressed;
         SuikaTetrisUI.OnCloseButtonPressed += SuikaTetrisUIOnCloseButtonPressed;
 
-        suikaTetrisBoard.OnGameOver += SuikaTetrisBoard_OnGameOver;
+        tetrisBoard.OnGameOver += SuikaTetrisBoard_OnGameOver;
     }
 
     private void SuikaTetrisBoard_OnGameOver(object sender, TetrisBoardBasic.OnGameOverEventArgs e)

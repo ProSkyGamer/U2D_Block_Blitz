@@ -17,7 +17,7 @@ public class GhostBoard : MonoBehaviour
     [SerializeField] protected TetrisBoardBasic followingBoard;
     [SerializeField] protected Figure followingFigure;
 
-    private Tilemap ghostTilemap;
+    protected Tilemap ghostTilemap;
 
     protected readonly List<Vector3Int> ghostFigureCells = new();
     protected Vector3Int ghostPieceTilemapPosition;
@@ -93,7 +93,7 @@ public class GhostBoard : MonoBehaviour
         }
     }
 
-    private void SetGhostFigure()
+    protected virtual void SetGhostFigure()
     {
         foreach (var ghostFigureCellPosition in ghostFigureCells)
         {

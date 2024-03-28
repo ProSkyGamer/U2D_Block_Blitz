@@ -226,9 +226,15 @@ public class BuildingTetrisBoard : TetrisBoardBasic
             {
                 var checkingTile = requiredAndForbiddenZonesTilemap.GetTile(boardTilePosition);
                 if (checkingTile == requiredZoneTile)
+                {
                     leftRequiredZoneTilesCount--;
+                    boardTilemap.SetTile(boardTilePosition, figure.GetFigureRequiredTile());
+                }
                 else if (checkingTile == forbiddenZoneTile)
+                {
                     leftTilesInForbiddenZone--;
+                    boardTilemap.SetTile(boardTilePosition, figure.GetFigureForbiddenTile());
+                }
             }
         }
 

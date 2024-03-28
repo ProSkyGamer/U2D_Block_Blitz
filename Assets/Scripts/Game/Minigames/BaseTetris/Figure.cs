@@ -362,5 +362,15 @@ public class Figure : MonoBehaviour
         return figureData.figureTile;
     }
 
+    public Tile GetFigureRequiredTile()
+    {
+        return figureData.requiredFigureTile;
+    }
+
+    public Tile GetFigureForbiddenTile()
+    {
+        return figureData.forbiddenFigureTile;
+    }
+
     #endregion
 }

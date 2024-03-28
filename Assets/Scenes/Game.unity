@@ -1267,7 +1267,7 @@ Tilemap:
   m_TileColorArray: []
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 0.41960785}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Suika Tetris
+  m_text: Tetrika
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
   m_sharedMaterial: {fileID: -1848339405948635046, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
@@ -1751,8 +1751,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3832,7 +3832,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6ff6b85966aeb3f4ab304af07f4dd424, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c1c614f3ba95a64b9fc46871fbe9e1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4932,27 +4932,157 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameBase: {fileID: 2074310485}
   allFiguresData:
-  - figureType: 0
-    figureTile: {fileID: 11400000, guid: d5b812c6a6e05f446a464245be8e0e35, type: 2}
-    figureCells: []
-  - figureType: 1
-    figureTile: {fileID: 11400000, guid: c166c949a41bb2b44a31ea99953e4640, type: 2}
-    figureCells: []
-  - figureType: 2
-    figureTile: {fileID: 11400000, guid: aaf15928c1c35174baaac7ebdc9dcdf2, type: 2}
-    figureCells: []
-  - figureType: 3
-    figureTile: {fileID: 11400000, guid: 0c2e3e08d10ef6a44991c222b1126f0a, type: 2}
-    figureCells: []
   - figureType: 4
-    figureTile: {fileID: 11400000, guid: 071028cf73772ef4c80d99a9a1c35abd, type: 2}
-    figureCells: []
+    figureTile: {fileID: 11400000, guid: cc20552deda10c14d8cf0da9ec45a271, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 5bb8f4bd6e6c5424286b4215ebe25a80, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: e53c9dcb1c558cf44b2892df16b76e8b, type: 2}
+    figureCells:
+    - {x: 1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: a8aaceccccceb3c479170e0b7c5e443d, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: ec5a40025d659ff4e9f52cf31bfa2f14, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: cab835b7cadccf14499b228bbbaec638, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
   - figureType: 5
-    figureTile: {fileID: 11400000, guid: 9c9afd925f6bca34ab919337fa167531, type: 2}
-    figureCells: []
+    figureTile: {fileID: 11400000, guid: e64e3f6c4ec3cac428502eb76cf28ce3, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: f48a62119c14ae743bfdf1bdc0026691, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 598d116ef10a6c84ea456e780791ccb2, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
   - figureType: 6
-    figureTile: {fileID: 11400000, guid: 186be1c1f070ebf4d8280ef8ae7b38e9, type: 2}
-    figureCells: []
+    figureTile: {fileID: 11400000, guid: 48e1bc72b9cf55e478afac82086e3558, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: a4bf4692cefab5549a408ef67e486dcc, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 9eb651f1fe452a449b1ce7bad90e08e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 2
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 2
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: -1, y: 0}
+    - {x: -1, y: -1}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 5
+    figureTile: {fileID: 11400000, guid: e64e3f6c4ec3cac428502eb76cf28ce3, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: f48a62119c14ae743bfdf1bdc0026691, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 598d116ef10a6c84ea456e780791ccb2, type: 2}
+    figureCells:
+    - {x: -1, y: -1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: 48e1bc72b9cf55e478afac82086e3558, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: a4bf4692cefab5549a408ef67e486dcc, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 9eb651f1fe452a449b1ce7bad90e08e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 1, y: -1}
+  - figureType: 4
+    figureTile: {fileID: 11400000, guid: cc20552deda10c14d8cf0da9ec45a271, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 5bb8f4bd6e6c5424286b4215ebe25a80, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: e53c9dcb1c558cf44b2892df16b76e8b, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 0}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: 0, y: -1}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+  - figureType: 0
+    figureTile: {fileID: 11400000, guid: a8aaceccccceb3c479170e0b7c5e443d, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: ec5a40025d659ff4e9f52cf31bfa2f14, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: cab835b7cadccf14499b228bbbaec638, type: 2}
+    figureCells:
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 2
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 0, y: -1}
+    - {x: 1, y: 0}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: a8aaceccccceb3c479170e0b7c5e443d, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: ec5a40025d659ff4e9f52cf31bfa2f14, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: cab835b7cadccf14499b228bbbaec638, type: 2}
+    figureCells:
+    - {x: 0, y: -1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 4
+    figureTile: {fileID: 11400000, guid: cc20552deda10c14d8cf0da9ec45a271, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 5bb8f4bd6e6c5424286b4215ebe25a80, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: e53c9dcb1c558cf44b2892df16b76e8b, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 4
+    figureTile: {fileID: 11400000, guid: 48e1bc72b9cf55e478afac82086e3558, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: a4bf4692cefab5549a408ef67e486dcc, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 9eb651f1fe452a449b1ce7bad90e08e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: e64e3f6c4ec3cac428502eb76cf28ce3, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: f48a62119c14ae743bfdf1bdc0026691, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 598d116ef10a6c84ea456e780791ccb2, type: 2}
+    figureCells:
+    - {x: -1, y: -1}
+    - {x: 0, y: -1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
   spawnPosition: {x: -1, y: 6, z: 0}
   boardSize: {x: 9, y: 15}
   isDeletingLines: 0
@@ -4984,13 +5114,13 @@ MonoBehaviour:
     - {x: -2, y: 0, z: 0}
     - {x: -2, y: -1, z: 0}
     - {x: -2, y: -2, z: 0}
-  requiredZoneTile: {fileID: 11400000, guid: 9c9afd925f6bca34ab919337fa167531, type: 2}
+  requiredZoneTile: {fileID: 11400000, guid: 27f9b9ea15cc9e4418bc3c59ec0659ce, type: 2}
   allForbiddenZoneTypes:
   - zoneTiles:
     - {x: 0, y: 1, z: 0}
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
-  forbiddenZoneTile: {fileID: 11400000, guid: 186be1c1f070ebf4d8280ef8ae7b38e9, type: 2}
+  forbiddenZoneTile: {fileID: 11400000, guid: 237c7ab4259f8cd4ab676fd454859ecd, type: 2}
   maxTileInForbiddenZone: 1
   requiredAndForbiddenZonesTilemap: {fileID: 283109169}
 --- !u!156049354 &693034139
@@ -5127,8 +5257,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 53340b250bea8af428d03f95b56cc8b7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5171,8 +5301,8 @@ Transform:
   m_GameObject: {fileID: 749470775}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 8, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.1, z: 1}
+  m_LocalPosition: {x: 4.75, y: 8.25, z: 0}
+  m_LocalScale: {x: 0.1625, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2074310484}
@@ -5217,8 +5347,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: dcd88b8f2120d9c4f8d1d9826b673819, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 53340b250bea8af428d03f95b56cc8b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6150,32 +6280,162 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameBase: {fileID: 166673082}
   allFiguresData:
-  - figureType: 0
-    figureTile: {fileID: 11400000, guid: d5b812c6a6e05f446a464245be8e0e35, type: 2}
-    figureCells: []
-  - figureType: 1
-    figureTile: {fileID: 11400000, guid: c166c949a41bb2b44a31ea99953e4640, type: 2}
-    figureCells: []
-  - figureType: 2
-    figureTile: {fileID: 11400000, guid: aaf15928c1c35174baaac7ebdc9dcdf2, type: 2}
-    figureCells: []
-  - figureType: 3
-    figureTile: {fileID: 11400000, guid: 0c2e3e08d10ef6a44991c222b1126f0a, type: 2}
-    figureCells: []
   - figureType: 4
-    figureTile: {fileID: 11400000, guid: 071028cf73772ef4c80d99a9a1c35abd, type: 2}
-    figureCells: []
+    figureTile: {fileID: 11400000, guid: cc20552deda10c14d8cf0da9ec45a271, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 5bb8f4bd6e6c5424286b4215ebe25a80, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: e53c9dcb1c558cf44b2892df16b76e8b, type: 2}
+    figureCells:
+    - {x: 1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: a8aaceccccceb3c479170e0b7c5e443d, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: ec5a40025d659ff4e9f52cf31bfa2f14, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: cab835b7cadccf14499b228bbbaec638, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
   - figureType: 5
-    figureTile: {fileID: 11400000, guid: 9c9afd925f6bca34ab919337fa167531, type: 2}
-    figureCells: []
+    figureTile: {fileID: 11400000, guid: e64e3f6c4ec3cac428502eb76cf28ce3, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: f48a62119c14ae743bfdf1bdc0026691, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 598d116ef10a6c84ea456e780791ccb2, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
   - figureType: 6
-    figureTile: {fileID: 11400000, guid: 186be1c1f070ebf4d8280ef8ae7b38e9, type: 2}
-    figureCells: []
+    figureTile: {fileID: 11400000, guid: 48e1bc72b9cf55e478afac82086e3558, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: a4bf4692cefab5549a408ef67e486dcc, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 9eb651f1fe452a449b1ce7bad90e08e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 2
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 2
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: -1, y: 0}
+    - {x: -1, y: -1}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 5
+    figureTile: {fileID: 11400000, guid: e64e3f6c4ec3cac428502eb76cf28ce3, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: f48a62119c14ae743bfdf1bdc0026691, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 598d116ef10a6c84ea456e780791ccb2, type: 2}
+    figureCells:
+    - {x: -1, y: -1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: 48e1bc72b9cf55e478afac82086e3558, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: a4bf4692cefab5549a408ef67e486dcc, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 9eb651f1fe452a449b1ce7bad90e08e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 1, y: -1}
+  - figureType: 4
+    figureTile: {fileID: 11400000, guid: cc20552deda10c14d8cf0da9ec45a271, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 5bb8f4bd6e6c5424286b4215ebe25a80, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: e53c9dcb1c558cf44b2892df16b76e8b, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    - {x: 1, y: 0}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: 0, y: -1}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+  - figureType: 0
+    figureTile: {fileID: 11400000, guid: a8aaceccccceb3c479170e0b7c5e443d, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: ec5a40025d659ff4e9f52cf31bfa2f14, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: cab835b7cadccf14499b228bbbaec638, type: 2}
+    figureCells:
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+  - figureType: 2
+    figureTile: {fileID: 11400000, guid: c0e45fecdd4eb62429a9caaf2b977315, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 1ed0b90c1a0a614429b1873026a11441, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 80dfd5855923d954392f9a0bbf5b14e4, type: 2}
+    figureCells:
+    - {x: -1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 0, y: -1}
+    - {x: 1, y: 0}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: a8aaceccccceb3c479170e0b7c5e443d, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: ec5a40025d659ff4e9f52cf31bfa2f14, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: cab835b7cadccf14499b228bbbaec638, type: 2}
+    figureCells:
+    - {x: 0, y: -1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 4
+    figureTile: {fileID: 11400000, guid: cc20552deda10c14d8cf0da9ec45a271, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: 5bb8f4bd6e6c5424286b4215ebe25a80, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: e53c9dcb1c558cf44b2892df16b76e8b, type: 2}
+    figureCells:
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 4
+    figureTile: {fileID: 11400000, guid: 48e1bc72b9cf55e478afac82086e3558, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: a4bf4692cefab5549a408ef67e486dcc, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 9eb651f1fe452a449b1ce7bad90e08e4, type: 2}
+    figureCells:
+    - {x: -1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  - figureType: 3
+    figureTile: {fileID: 11400000, guid: e64e3f6c4ec3cac428502eb76cf28ce3, type: 2}
+    requiredFigureTile: {fileID: 11400000, guid: f48a62119c14ae743bfdf1bdc0026691, type: 2}
+    forbiddenFigureTile: {fileID: 11400000, guid: 598d116ef10a6c84ea456e780791ccb2, type: 2}
+    figureCells:
+    - {x: -1, y: -1}
+    - {x: 0, y: -1}
+    - {x: 0, y: 0}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
   spawnPosition: {x: -1, y: 4, z: 0}
   boardSize: {x: 11, y: 11}
   isDeletingLines: 0
   nextActiveFigureTilemap: {fileID: 1518657889}
-  minWinScore: 30
+  minWinScore: 35
   scoreForDroppedFigure: 1
   scoreForCombinedFigure: 3
 --- !u!156049354 &827516634
@@ -6580,7 +6840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TETRIS SUIKA
+  m_text: TETRIKA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
   m_sharedMaterial: {fileID: -1848339405948635046, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
@@ -7796,7 +8056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Same Game
+  m_text: Sames
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
   m_sharedMaterial: {fileID: -1848339405948635046, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
@@ -7823,8 +8083,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8121,7 +8381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15bf3b4776b48b4489fa8c621c81880b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostTile: {fileID: 11400000, guid: 613b0e1e467cff049afbe77fb8fff162, type: 2}
+  ghostTile: {fileID: 11400000, guid: c8c1e8ce09dbed94688d8c96dc7df57c, type: 2}
   followingBoard: {fileID: 827516633}
   followingFigure: {fileID: 827516632}
 --- !u!156049354 &1106080881
@@ -8371,7 +8631,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Building Tetris
+  m_text: Buildis
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
   m_sharedMaterial: {fileID: -1848339405948635046, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
@@ -8398,8 +8658,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9006,7 +9266,7 @@ Transform:
   m_GameObject: {fileID: 1264261455}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 8, z: 0}
+  m_LocalPosition: {x: 4.75, y: 8.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9053,12 +9313,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 6ff6b85966aeb3f4ab304af07f4dd424, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c1c614f3ba95a64b9fc46871fbe9e1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9200,7 +9460,7 @@ Transform:
   m_GameObject: {fileID: 1306101868}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 6.25, z: 0}
+  m_LocalPosition: {x: 5.25, y: 6, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9246,13 +9506,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 6ff6b85966aeb3f4ab304af07f4dd424, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: 21300000, guid: 2c1c614f3ba95a64b9fc46871fbe9e1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9284,8 +9544,8 @@ Transform:
   m_GameObject: {fileID: 1335888128}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 6.25, z: 0}
-  m_LocalScale: {x: 0.19999999, y: 0.099999994, z: 1}
+  m_LocalPosition: {x: 5.25, y: 6, z: 0}
+  m_LocalScale: {x: 0.16, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 166673081}
@@ -9330,8 +9590,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: dcd88b8f2120d9c4f8d1d9826b673819, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 53340b250bea8af428d03f95b56cc8b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9377,7 +9637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100.000046}
+  m_AnchoredPosition: {x: 100, y: -100.00006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1344333826
@@ -10096,7 +10356,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 0.55, z: 1}
+  m_LocalScale: {x: 1.125, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 166673081}
@@ -10141,8 +10401,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: dcd88b8f2120d9c4f8d1d9826b673819, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 53340b250bea8af428d03f95b56cc8b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10355,7 +10615,7 @@ Transform:
   m_GameObject: {fileID: 1518657888}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 6.25, z: 0}
+  m_LocalPosition: {x: 5.5, y: 6.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10424,24 +10684,38 @@ MonoBehaviour:
   allFiguresData:
   - figureType: 0
     figureTile: {fileID: 11400000, guid: d5b812c6a6e05f446a464245be8e0e35, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   - figureType: 1
     figureTile: {fileID: 11400000, guid: c166c949a41bb2b44a31ea99953e4640, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   - figureType: 2
     figureTile: {fileID: 11400000, guid: aaf15928c1c35174baaac7ebdc9dcdf2, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   - figureType: 3
     figureTile: {fileID: 11400000, guid: 0c2e3e08d10ef6a44991c222b1126f0a, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   - figureType: 4
     figureTile: {fileID: 11400000, guid: 071028cf73772ef4c80d99a9a1c35abd, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   - figureType: 5
     figureTile: {fileID: 11400000, guid: 9c9afd925f6bca34ab919337fa167531, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   - figureType: 6
     figureTile: {fileID: 11400000, guid: 186be1c1f070ebf4d8280ef8ae7b38e9, type: 2}
+    requiredFigureTile: {fileID: 0}
+    forbiddenFigureTile: {fileID: 0}
     figureCells: []
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
@@ -10762,7 +11036,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SAME GAME
+  m_text: SAMES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
   m_sharedMaterial: {fileID: -1848339405948635046, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
@@ -12034,7 +12308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TETRIS
+  m_text: BUILDIS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
   m_sharedMaterial: {fileID: -1848339405948635046, guid: aa8cd455c001cf643913ecdfbb600479, type: 2}
@@ -12521,13 +12795,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6ff6b85966aeb3f4ab304af07f4dd424, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c1c614f3ba95a64b9fc46871fbe9e1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
   m_Size: {x: 11, y: 11}
-  m_AdaptiveModeThreshold: 0.5
+  m_AdaptiveModeThreshold: 0
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -13170,7 +13444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100.000046}
+  m_AnchoredPosition: {x: 100, y: -100.00006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031231538
@@ -13281,8 +13555,8 @@ Transform:
   m_GameObject: {fileID: 2051877779}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.75, z: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.925, y: 0.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2074310484}
@@ -13327,8 +13601,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: dcd88b8f2120d9c4f8d1d9826b673819, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 53340b250bea8af428d03f95b56cc8b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13579,7 +13853,7 @@ Transform:
   m_GameObject: {fileID: 2107561385}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 8, z: 0}
+  m_LocalPosition: {x: 5, y: 8.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13836,12 +14110,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133194420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21bb80a6738b51e42af4e60eaa87d3db, type: 3}
+  m_Script: {fileID: 11500000, guid: f17d82853a51ddb418e0cc989fa875c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostTile: {fileID: 11400000, guid: 613b0e1e467cff049afbe77fb8fff162, type: 2}
+  ghostTile: {fileID: 11400000, guid: c8c1e8ce09dbed94688d8c96dc7df57c, type: 2}
   followingBoard: {fileID: 693034138}
   followingFigure: {fileID: 693034137}
+  requiredGhostTile: {fileID: 11400000, guid: 9a9f09bb7005c2349b34673f3fa83716, type: 2}
+  forbiddenGhostTile: {fileID: 11400000, guid: 9795690dc1caa204c94c429d32f9810d, type: 2}
+  requiredTile: {fileID: 11400000, guid: 27f9b9ea15cc9e4418bc3c59ec0659ce, type: 2}
+  forbiddenTile: {fileID: 11400000, guid: 237c7ab4259f8cd4ab676fd454859ecd, type: 2}
+  requiredAndForbiddenTilemap: {fileID: 283109169}
 --- !u!156049354 &2133194423
 Grid:
   m_ObjectHideFlags: 0

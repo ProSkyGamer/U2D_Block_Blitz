@@ -21,6 +21,7 @@ public class MinigameBase : MonoBehaviour
     public class OnGameOverEventArgs : EventArgs
     {
         public GameOverReason gameOverReason;
+        public int completionTime;
     }
 
     public event EventHandler OnGameStarted;
@@ -65,7 +66,7 @@ public class MinigameBase : MonoBehaviour
     {
         OnGameOver?.Invoke(this, new OnGameOverEventArgs
         {
-            gameOverReason = gameOverReason
+            gameOverReason = gameOverReason, completionTime = (int)(maxGameTime - gameTimer)
         });
 
         isGameStarted = false;
@@ -87,7 +88,8 @@ public class MinigameBase : MonoBehaviour
             {
                 gameOverReason = isWinPossibleAfterTimerEnds
                     ? tetrisBoard.GetGameResult() ? GameOverReason.Win : GameOverReason.TimeOut
-                    : GameOverReason.TimeOut
+                    : GameOverReason.TimeOut,
+                completionTime = (int)(maxGameTime - gameTimer)
             });
             isGameStarted = false;
             return;

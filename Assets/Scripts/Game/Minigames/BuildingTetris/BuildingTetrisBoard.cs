@@ -103,8 +103,8 @@ public class BuildingTetrisBoard : TetrisBoardBasic
         var randomRequiredZoneIndex = Random.Range(0, allRequiredZoneTypes.Count);
         var chosenRandomZone = allRequiredZoneTypes[randomRequiredZoneIndex];
 
-        var zoneXPosition = Random.Range(FieldBounds.xMin, FieldBounds.xMax);
-        var zoneYPosition = Random.Range(FieldBounds.yMin, FieldBounds.yMax);
+        var zoneXPosition = Random.Range(FieldRequiredAndNeededBounds.xMin, FieldRequiredAndNeededBounds.xMax);
+        var zoneYPosition = Random.Range(FieldRequiredAndNeededBounds.yMin, FieldRequiredAndNeededBounds.yMax);
         zoneTilemapPosition = new Vector3Int(zoneXPosition, zoneYPosition);
 
         var isRequiredZonePositionCorrect = false;
@@ -113,8 +113,10 @@ public class BuildingTetrisBoard : TetrisBoardBasic
         {
             while (alreadyUsedTilemapPosition.Contains(zoneTilemapPosition))
             {
-                var newZoneXPosition = Random.Range(FieldBounds.xMin, FieldBounds.xMax);
-                var newZoneYPosition = Random.Range(FieldBounds.yMin, FieldBounds.yMax);
+                var newZoneXPosition =
+                    Random.Range(FieldRequiredAndNeededBounds.xMin, FieldRequiredAndNeededBounds.xMax);
+                var newZoneYPosition =
+                    Random.Range(FieldRequiredAndNeededBounds.yMin, FieldRequiredAndNeededBounds.yMax);
                 var newZoneTilemapPosition = new Vector3Int(newZoneXPosition, newZoneYPosition);
 
                 zoneTilemapPosition = newZoneTilemapPosition;
@@ -127,7 +129,7 @@ public class BuildingTetrisBoard : TetrisBoardBasic
             {
                 var zoneTilemapTilePosition = zoneTilemapPosition + zoneTilePosition;
 
-                if (!FieldBounds.Contains((Vector2Int)zoneTilemapTilePosition))
+                if (!FieldRequiredAndNeededBounds.Contains((Vector2Int)zoneTilemapTilePosition))
                 {
                     isRequiredZonePositionCorrect = false;
                     break;
@@ -146,8 +148,8 @@ public class BuildingTetrisBoard : TetrisBoardBasic
         var notFittingForbiddenZones = new List<Zone>();
         var fieldTiles = (boardSize.x - 1) * (boardSize.y - 1);
 
-        var zoneXPosition = Random.Range(FieldBounds.xMin, FieldBounds.xMax);
-        var zoneYPosition = Random.Range(FieldBounds.yMin, FieldBounds.yMax);
+        var zoneXPosition = Random.Range(FieldRequiredAndNeededBounds.xMin, FieldRequiredAndNeededBounds.xMax);
+        var zoneYPosition = Random.Range(FieldRequiredAndNeededBounds.yMin, FieldRequiredAndNeededBounds.yMax);
         zoneTilemapPosition = new Vector3Int(zoneXPosition, zoneYPosition);
 
         while (!isForbiddenZoneFits)
@@ -159,8 +161,11 @@ public class BuildingTetrisBoard : TetrisBoardBasic
             {
                 while (alreadyUsedTilemapPosition.Contains(zoneTilemapPosition))
                 {
-                    var newZoneXPosition = Random.Range(FieldBounds.xMin, FieldBounds.xMax);
-                    var newZoneYPosition = Random.Range(FieldBounds.yMin, FieldBounds.yMax);
+                    Debug.Log("Worked");
+                    var newZoneXPosition = Random.Range(FieldRequiredAndNeededBounds.xMin,
+                        FieldRequiredAndNeededBounds.xMax);
+                    var newZoneYPosition = Random.Range(FieldRequiredAndNeededBounds.yMin,
+                        FieldRequiredAndNeededBounds.yMax);
                     var newZoneTilemapPosition = new Vector3Int(newZoneXPosition, newZoneYPosition);
 
                     zoneTilemapPosition = newZoneTilemapPosition;
@@ -174,8 +179,8 @@ public class BuildingTetrisBoard : TetrisBoardBasic
                 {
                     var zoneTilemapTilePosition = zoneTilemapPosition + zoneTilePosition;
 
-                    if (!FieldBounds.Contains((Vector2Int)zoneTilemapTilePosition) ||
-                        requiredAndForbiddenZonesTilemap.GetTile(zoneTilemapPosition) != null)
+                    if (!FieldRequiredAndNeededBounds.Contains((Vector2Int)zoneTilemapTilePosition) ||
+                        requiredAndForbiddenZonesTilemap.GetTile(zoneTilemapTilePosition) != null)
                     {
                         isRequiredZonePositionCorrect = false;
                         isForbiddenZoneFits = false;

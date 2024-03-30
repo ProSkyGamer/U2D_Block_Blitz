@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildingTetrisBoard.cs" />
     <Compile Include="Assets\Scripts\Game\UI\BuildingTetrisUI.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Records\RecordsSuikaTetrisTabUI.cs" />
+    <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\MinigameRecords.cs" />
     <Compile Include="Assets\Scripts\Game\Input\GameInput.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SameGame\SameGameSingleTile.cs" />
     <Compile Include="Assets\Scripts\Game\UI\ChooseMinigameUI.cs" />
@@ -58,16 +60,20 @@
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\GhostBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildTetrisController.cs" />
     <Compile Include="Assets\Scripts\Game\UI\InfoUI.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Records\RecordsSameGameTabUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\MinigameBase.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Records\RecordSingle.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildingTetrisGhostBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SameGame\SameGameUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\BuildingSuikaFigure.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Records\RecordsBuildingTetrisTabUI.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaTetrisBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BaseTetris\FigureType.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\MinigameResultMessagesUI.cs" />
     <Compile Include="Assets\Scripts\Game\Input\GameInputActions.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\SuikaTetris\SuikaTetrisController.cs" />
     <Compile Include="Assets\Scripts\Game\Minigames\BuildingTetris\BuildingTetrisFigure.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Records\RecordsTabBaseUI.cs" />
     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />
     <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.9\package.json" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

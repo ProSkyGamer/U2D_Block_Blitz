@@ -8,6 +8,7 @@ public class SuikaTetrisBoard : TetrisBoardBasic
     public class OnScoreChangedEventArgs : EventArgs
     {
         public int newScore;
+        public int neededScore;
     }
 
     [SerializeField] private int minWinScore = 30;
@@ -36,7 +37,8 @@ public class SuikaTetrisBoard : TetrisBoardBasic
         currentScore = 0;
         OnScoreChanged?.Invoke(this, new OnScoreChangedEventArgs
         {
-            newScore = currentScore
+            newScore = currentScore,
+            neededScore = minWinScore
         });
     }
 
@@ -132,7 +134,8 @@ public class SuikaTetrisBoard : TetrisBoardBasic
 
         OnScoreChanged?.Invoke(this, new OnScoreChangedEventArgs
         {
-            newScore = currentScore
+            newScore = currentScore,
+            neededScore = minWinScore
         });
     }
 

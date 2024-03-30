@@ -8,6 +8,11 @@ public class InfoUI : MonoBehaviour
 
     public static event EventHandler OnTabClosed;
 
+    public static event EventHandler OnRecordsSameGameTabOpened;
+    public static event EventHandler OnRecordsBuildingTetrisTabOpened;
+    public static event EventHandler OnRecordsSuikaTetrisTabOpened;
+    public static event EventHandler OnOtherTabOpened;
+
     #endregion
 
     #region Enums
@@ -55,9 +60,6 @@ public class InfoUI : MonoBehaviour
     [SerializeField] private Transform controlsSameGameTabTransform;
     [SerializeField] private Transform controlsBuildingTetrisTabTransform;
     [SerializeField] private Transform controlsSuikaTetrisTabTransform;
-    [SerializeField] private Transform recordsSameGameTabTransform;
-    [SerializeField] private Transform recordsBuildingTetrisTabTransform;
-    [SerializeField] private Transform recordsSuikaTetrisTabTransform;
 
 
     private TabTypes currentTabType = TabTypes.GameInfo;
@@ -150,6 +152,7 @@ public class InfoUI : MonoBehaviour
     {
         ResetAllActiveTabButtons();
         ResetAllActiveTabs();
+        OnOtherTabOpened?.Invoke(this, EventArgs.Empty);
 
         switch (currentTabType)
         {
@@ -201,15 +204,15 @@ public class InfoUI : MonoBehaviour
                     default:
                     case GameTabTypes.SameGame:
                         ChangeActiveTabButtonImage(sameGameTabButtonImage);
-                        recordsSameGameTabTransform.gameObject.SetActive(true);
+                        OnRecordsSameGameTabOpened?.Invoke(this, EventArgs.Empty);
                         break;
                     case GameTabTypes.BuildingTetris:
                         ChangeActiveTabButtonImage(buildingTetrisTabButtonImage);
-                        recordsBuildingTetrisTabTransform.gameObject.SetActive(true);
+                        OnRecordsBuildingTetrisTabOpened?.Invoke(this, EventArgs.Empty);
                         break;
                     case GameTabTypes.SuikaTetris:
                         ChangeActiveTabButtonImage(suikaTetrisTabButtonImage);
-                        recordsSuikaTetrisTabTransform.gameObject.SetActive(true);
+                        OnRecordsSuikaTetrisTabOpened?.Invoke(this, EventArgs.Empty);
                         break;
                 }
 
@@ -241,9 +244,6 @@ public class InfoUI : MonoBehaviour
         controlsSameGameTabTransform.gameObject.SetActive(false);
         controlsBuildingTetrisTabTransform.gameObject.SetActive(false);
         controlsSuikaTetrisTabTransform.gameObject.SetActive(false);
-        recordsSameGameTabTransform.gameObject.SetActive(false);
-        recordsBuildingTetrisTabTransform.gameObject.SetActive(false);
-        recordsSuikaTetrisTabTransform.gameObject.SetActive(false);
     }
 
     #endregion

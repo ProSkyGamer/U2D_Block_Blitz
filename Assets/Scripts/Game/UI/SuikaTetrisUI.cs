@@ -28,6 +28,7 @@ public class SuikaTetrisUI : MonoBehaviour
     private SameGameSingleTile[,] tilesField;
 
     [SerializeField] private TextMeshProUGUI scoreCountText;
+    [SerializeField] private TextMeshProUGUI neededCountText;
 
     private float gameTimer;
     private int previousGameTimeInt;
@@ -62,6 +63,7 @@ public class SuikaTetrisUI : MonoBehaviour
     private void SuikaTetrisBoard_OnScoreChanged(object sender, SuikaTetrisBoard.OnScoreChangedEventArgs e)
     {
         scoreCountText.text = e.newScore.ToString();
+        neededCountText.text = e.neededScore.ToString();
     }
 
     private void MinigameResultMessagesUI_OnMessageClosed(object sender, EventArgs e)

@@ -26,6 +26,8 @@ public class TetrisBoardBasic : MonoBehaviour
     [SerializeField] protected Vector3Int spawnPosition = new(-1, 8);
     [SerializeField] protected Vector2Int boardSize = new(10, 20);
     [SerializeField] protected bool isDeletingLines = true;
+    [SerializeField] protected bool isUsingNotSpawningTopLinesCount;
+    [SerializeField] protected int notSpawningTopLinesCount = 4;
 
     protected Tilemap boardTilemap;
     [SerializeField] protected Tilemap nextActiveFigureTilemap;
@@ -45,6 +47,18 @@ public class TetrisBoardBasic : MonoBehaviour
         {
             var position = new Vector2Int(-boardSize.x / 2, -boardSize.y / 2);
             return new RectInt(position, boardSize);
+        }
+    }
+
+    protected RectInt FieldRequiredAndNeededBounds
+    {
+        get
+        {
+            var position = new Vector2Int(-boardSize.x / 2,
+                (-boardSize.y + (isUsingNotSpawningTopLinesCount ? notSpawningTopLinesCount : 0)) / 2);
+            var newBoardSize = new Vector2Int(boardSize.x,
+                boardSize.y - (isUsingNotSpawningTopLinesCount ? notSpawningTopLinesCount * 2 : 0));
+            return new RectInt(position, newBoardSize);
         }
     }
 

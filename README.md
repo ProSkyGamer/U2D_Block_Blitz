@@ -5,6 +5,7 @@ Block Blitz
 Sames
 
 Кликайте на рядомстоящие блоки одинаковых цветов, чтобы очистить поле
+
 ![same1](https://github.com/ProSkyGamer/U2D_Block_Blitz/assets/82523053/9fbdcaa9-820d-4f57-b829-845337fb0698)
 
 ![same4](https://github.com/ProSkyGamer/U2D_Block_Blitz/assets/82523053/1258b1c4-c962-42c2-bf4e-275202060de5)
